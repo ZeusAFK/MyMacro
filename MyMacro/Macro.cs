@@ -15,6 +15,7 @@ namespace MyMacro
         private bool running;
         private Window window;
         private Thread thread;
+        private KeySender keySender;
 
         /// <summary>
         /// Macro que representa una regla de envio de una tecla hacia un proceso
@@ -31,6 +32,8 @@ namespace MyMacro
 
             this.key = key;
             this.interval = interval;
+
+            keySender = new KeySender();
         }
 
         /// <summary>
@@ -82,7 +85,8 @@ namespace MyMacro
         {
             while (running)
             {
-                KeySender.sendKey(window.getHandle(), key);
+                keySender.sendKey(window.getHandle(), key);
+                //KeySender.PressKey((short)key);
                 Thread.Sleep(interval);
             }
         }
