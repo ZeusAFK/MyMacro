@@ -123,9 +123,125 @@ namespace MyMacro
         /// <returns></returns>
         public bool sendKey(IntPtr hWnd, int key)
         {
-            KeyPress((short)key);
+            string keyChar = ((char)key).ToString().ToUpper();
+            short vKey = 0;
+
+            switch (keyChar)
+            {
+                case "1":
+                    vKey = (short)VirtualKeyCode.VK_1;
+                    break;
+                case "2":
+                    vKey = (short)VirtualKeyCode.VK_2;
+                    break;
+                case "3":
+                    vKey = (short)VirtualKeyCode.VK_3;
+                    break;
+                case "4":
+                    vKey = (short)VirtualKeyCode.VK_4;
+                    break;
+                case "5":
+                    vKey = (short)VirtualKeyCode.VK_5;
+                    break;
+                case "6":
+                    vKey = (short)VirtualKeyCode.VK_6;
+                    break;
+                case "7":
+                    vKey = (short)VirtualKeyCode.VK_7;
+                    break;
+                case "8":
+                    vKey = (short)VirtualKeyCode.VK_8;
+                    break;
+                case "9":
+                    vKey = (short)VirtualKeyCode.VK_9;
+                    break;
+                case "0":
+                    vKey = (short)VirtualKeyCode.VK_0;
+                    break;
+                case "A":
+                    vKey = (short)VirtualKeyCode.VK_A;
+                    break;
+                case "B":
+                    vKey = (short)VirtualKeyCode.VK_B;
+                    break;
+                case "C":
+                    vKey = (short)VirtualKeyCode.VK_C;
+                    break;
+                case "D":
+                    vKey = (short)VirtualKeyCode.VK_D;
+                    break;
+                case "E":
+                    vKey = (short)VirtualKeyCode.VK_E;
+                    break;
+                case "F":
+                    vKey = (short)VirtualKeyCode.VK_F;
+                    break;
+                case "G":
+                    vKey = (short)VirtualKeyCode.VK_G;
+                    break;
+                case "H":
+                    vKey = (short)VirtualKeyCode.VK_H;
+                    break;
+                case "I":
+                    vKey = (short)VirtualKeyCode.VK_I;
+                    break;
+                case "J":
+                    vKey = (short)VirtualKeyCode.VK_J;
+                    break;
+                case "K":
+                    vKey = (short)VirtualKeyCode.VK_K;
+                    break;
+                case "L":
+                    vKey = (short)VirtualKeyCode.VK_L;
+                    break;
+                case "M":
+                    vKey = (short)VirtualKeyCode.VK_M;
+                    break;
+                case "N":
+                    vKey = (short)VirtualKeyCode.VK_N;
+                    break;
+                case "O":
+                    vKey = (short)VirtualKeyCode.VK_O;
+                    break;
+                case "P":
+                    vKey = (short)VirtualKeyCode.VK_P;
+                    break;
+                case "Q":
+                    vKey = (short)VirtualKeyCode.VK_Q;
+                    break;
+                case "R":
+                    vKey = (short)VirtualKeyCode.VK_R;
+                    break;
+                case "S":
+                    vKey = (short)VirtualKeyCode.VK_S;
+                    break;
+                case "T":
+                    vKey = (short)VirtualKeyCode.VK_T;
+                    break;
+                case "U":
+                    vKey = (short)VirtualKeyCode.VK_U;
+                    break;
+                case "V":
+                    vKey = (short)VirtualKeyCode.VK_V;
+                    break;
+                case "W":
+                    vKey = (short)VirtualKeyCode.VK_W;
+                    break;
+                case "X":
+                    vKey = (short)VirtualKeyCode.VK_X;
+                    break;
+                case "Y":
+                    vKey = (short)VirtualKeyCode.VK_Y;
+                    break;
+                case "Z":
+                    vKey = (short)VirtualKeyCode.VK_Z;
+                    break;
+                default: return false;
+            }
+
+            KeyPress(vKey);
             Thread.Sleep(50);
-            KeyRelease((short)key);
+            KeyRelease(vKey);
             
             return true;
         }
