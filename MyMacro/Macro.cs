@@ -85,7 +85,7 @@ namespace MyMacro
         {
             while (running)
             {
-                keySender.sendKey(window.getHandle(), key);
+                keySender.sendKey(IntPtr.Zero, key);
                 //KeySender.PressKey((short)key);
                 Thread.Sleep(interval);
             }

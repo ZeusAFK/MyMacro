@@ -242,7 +242,8 @@ namespace MyMacro
             KeyPress(vKey);
             Thread.Sleep(50);
             KeyRelease(vKey);
-            
+            Thread.Sleep(50);
+
             return true;
         }
     }
