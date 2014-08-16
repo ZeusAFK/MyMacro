@@ -1,0 +1,4 @@
+MyMacro
+=======
+
+Simple macro
