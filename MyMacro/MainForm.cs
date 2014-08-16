@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace MyMacro
 {
@@ -17,6 +18,9 @@ namespace MyMacro
             InitializeComponent();
             macroList = null;
         }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern short GetAsyncKeyState(int vkey);
 
         private Macro[] macroList;
         private bool macrosRunning = false;
@@ -57,7 +61,8 @@ namespace MyMacro
         {
             while (macrosRunning)
             {
-                if (!window.isForegroundWindow())
+                if (GetAsyncKeyState(0x14) != 0)
+                //if (!window.isForegroundWindow())
                 {
                     this.Invoke(new MethodInvoker(delegate
                     {
@@ -65,7 +70,7 @@ namespace MyMacro
                     }));
                     return;
                 }
-                Thread.Sleep(500);
+                Thread.Sleep(50);
             }
         }
 
@@ -97,7 +102,7 @@ namespace MyMacro
 
 
             window = (Window)cmbApplication.SelectedItem;
-            window.setForegroundWindow();
+            //window.setForegroundWindow();
 
             macroList = buildMacroList();
             foreach (Macro macro in macroList)
