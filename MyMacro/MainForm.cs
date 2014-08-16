@@ -22,6 +22,12 @@ namespace MyMacro
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern short GetAsyncKeyState(int vkey);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
+
+        [DllImportAttribute("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        public static extern bool ReleaseCapture();
+
         private Macro[] macroList;
         private bool macrosRunning = false;
         private Window window;
@@ -190,6 +196,45 @@ namespace MyMacro
                     macro.Stop();
                 }
             }
+        }
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, 0xa1, 0x2, 0);
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMinimize_MouseHover(object sender, EventArgs e)
+        {
+            btnMinimize.BackgroundImage = MyMacro.Properties.Resources.minimize_hover;
+        }
+
+        private void btnMinimize_MouseLeave(object sender, EventArgs e)
+        {
+            btnMinimize.BackgroundImage = MyMacro.Properties.Resources.minimize;
+        }
+
+        private void btnClose_MouseHover(object sender, EventArgs e)
+        {
+            btnClose.BackgroundImage = MyMacro.Properties.Resources.close_hover;
+        }
+
+        private void btnClose_MouseLeave(object sender, EventArgs e)
+        {
+            btnClose.BackgroundImage = MyMacro.Properties.Resources.close;
         }
     }
 }
